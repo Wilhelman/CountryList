@@ -17,7 +17,7 @@ public class CountryListActivity extends AppCompatActivity {
     private CountryListAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {//ep
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_country_list);
 
