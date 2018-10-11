@@ -11,19 +11,28 @@ import java.util.List;
 
 public class CountryListAdapter extends RecyclerView.Adapter<CountryViewHolder> {
 
+    public interface OnClickListener {
+        void onClick(int position);
+    }
+
     private Context context;
     private List<String> countries;
+    private OnClickListener listener;
 
     public CountryListAdapter(Context context, List<String> countries) {
         this.context = context;
         this.countries = countries;
     }
 
+    public void setOnClickListener(OnClickListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public CountryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context).inflate(R.layout.item_view, parent, false);
-        return new CountryViewHolder(itemView);
+        return new CountryViewHolder(itemView, listener);
     }
 
     @Override
