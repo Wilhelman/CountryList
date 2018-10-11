@@ -1,5 +1,6 @@
 package com.example.guillermogs2.countrylist;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -35,7 +36,11 @@ public class CountryListActivity extends AppCompatActivity {
         adapter.setOnClickListener(new CountryListAdapter.OnClickListener(){
             @Override
             public void onClick(int position) {
-                Toast.makeText(CountryListActivity.this,"Clicked" + position, Toast.LENGTH_SHORT).show();
+                String country = countries.get(position);
+                Intent data = new Intent();
+                data.putExtra("country",country);
+                setResult(RESULT_OK,data);
+                finish();
             }
         });
     }
