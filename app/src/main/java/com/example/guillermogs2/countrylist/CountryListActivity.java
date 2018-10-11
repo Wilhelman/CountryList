@@ -26,12 +26,26 @@ public class CountryListActivity extends AppCompatActivity {
         String[] array_countries = getResources().getStringArray(R.array.countries);
         countries = Arrays.asList(array_countries);
 
+        Intent intent = getIntent();
+        int position = -1;
+        if(intent != null){
+            String country = intent.getStringExtra("country");
+            for (int i = 0; i<countries.size(); i++){
+                if(countries.get(i).equals(country)){
+                    position = i;
+                    break;
+                }
+            }
+        }
+
         country_list_view = findViewById(R.id.country_list_view);
         country_list_view.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new CountryListAdapter(this,countries);
         country_list_view.setAdapter(adapter);
         country_list_view.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+
+        country_list_view.scrollToPosition(position);
 
         adapter.setOnClickListener(new CountryListAdapter.OnClickListener(){
             @Override
